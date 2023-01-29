@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from "react";
-import { setAuthCookies } from "../cookie_helpers";
-import Link from "next/link";
+import React, {useEffect} from "react";
+import {useRouter} from "next/router";
 
 interface AuthCallbackProps {}
 
-const AuthCallback = ({}: AuthCallbackProps): JSX.Element => (
-  <>
-    <h3>Logged in successfully</h3>
-    <Link href={"/private/profile"}>Continue</Link>
-  </>
-);
+const AuthCallback = ({}: AuthCallbackProps): JSX.Element => {
+  const router = useRouter();
+  useEffect(() => {
+    // setTimeout(() => {
+      router.push("/private/profile");
+    // }, 500);
+  }, []);
+  return <>Redirecting you...</>;
+};
 
 export default AuthCallback;
