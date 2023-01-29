@@ -1,6 +1,7 @@
 import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
 import { router } from "next/client";
 import { useRouter } from "next/router";
+import { clearAuthCookies } from "../../cookie_helpers";
 
 const Profile = () => {
   const user = useUser();
@@ -13,6 +14,7 @@ const Profile = () => {
       <pre>{JSON.stringify(user, null, 2)}</pre>
       <button
         onClick={async () => {
+          clearAuthCookies();
           await supabase.auth.signOut();
           router.push("/");
         }}
