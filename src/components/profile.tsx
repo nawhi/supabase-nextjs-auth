@@ -1,11 +1,10 @@
-import { Session } from "@supabase/auth-helpers-react";
 import { router } from "next/client";
-import { clearAuthCookies } from "../../cookie_helpers";
-import { createBrowserSupabaseClient } from "@supabase/auth-helpers-nextjs";
+import { clearAuthCookies, SB_KEY, SB_URL } from "../cookie_helpers";
 import { useEffect, useState } from "react";
+import { createClient, Session } from "@supabase/supabase-js";
 
 const Profile = () => {
-  const [supabase] = useState(() => createBrowserSupabaseClient());
+  const [supabase] = useState(() => createClient(SB_URL, SB_KEY));
 
   const [loading, setLoading] = useState(true);
   const [session, setSession] = useState<Session | null>(null);

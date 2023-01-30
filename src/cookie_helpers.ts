@@ -1,3 +1,22 @@
+import { createClient, SupabaseClient } from "@supabase/supabase-js";
+
+const nonnull = <T>(value: T | null | undefined, name: string): T => {
+  if (value === undefined || value === null) {
+    throw new Error(`${name} must be defined and non-null`);
+  }
+  return value;
+};
+
+export const SB_URL = nonnull(
+  process.env.NEXT_PUBLIC_SUPABASE_URL,
+  "process.env.NEXT_PUBLIC_SUPABASE_URL"
+);
+
+export const SB_KEY = nonnull(
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+  "process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY"
+);
+
 export const ACCESS_TOKEN_COOKIE_KEY = "sb-access-token";
 export const REFRESH_TOKEN_COOKIE_KEY = "sb-refresh-token";
 

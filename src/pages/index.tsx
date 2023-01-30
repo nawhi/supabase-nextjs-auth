@@ -1,10 +1,9 @@
-import Head from "next/head";
-import { useSupabaseClient } from "@supabase/auth-helpers-react";
-import { useRouter } from "next/router";
+import {createClient} from "@supabase/supabase-js";
+import {SB_KEY, SB_URL} from "../cookie_helpers";
+import {useState} from "react";
 
 export default function Home() {
-  const supabase = useSupabaseClient();
-  const router = useRouter();
+  const [supabase] = useState(() => createClient(SB_URL, SB_KEY));
   return (
     <main>
       <h2>Login</h2>
